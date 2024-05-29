@@ -13,6 +13,8 @@ import Orders from './components/Orders/Orders';
 import Inventory from './components/Inventory/Inventory';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import RequireAuth from './components/RequireAuth/RequireAuth';
+import Shipment from './components/Shipment/Shipment';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'inventory',
-        element: <Inventory></Inventory>
+        element: <RequireAuth><Inventory></Inventory></RequireAuth>
+      },
+      {
+        path: 'shipment',
+        element: <RequireAuth><Shipment></Shipment></RequireAuth>
       },
       {
         path: 'signup',
