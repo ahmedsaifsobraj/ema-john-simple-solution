@@ -1,0 +1,46 @@
+.from-container{
+    width: 600px;
+    margin: 0 auto;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+.from-title{
+    font-size: 35px;
+    color: black;
+    font-weight: 400;
+    text-align: center;
+}
+
+.input-group{
+    margin-bottom: 20px;
+}
+.input-group label{
+    display: block;
+    margin-left: 5px;
+    font-size: 24px;
+}
+
+.input-group input{
+    width: 415px;
+    height: 55px;
+    border: 1px solid ;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.from-submit{
+    width: 415px;
+    height: 55px;
+    background-color: rgba(255, 153, 0, 0.3);
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+}
+
+.form-link{
+    color: #ff9900;
+    text-decoration: none;
+}
