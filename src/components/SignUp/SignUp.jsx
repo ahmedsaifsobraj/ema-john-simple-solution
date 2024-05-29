@@ -1,40 +1,45 @@
 import React, { useState } from 'react';
 import './SignUp.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 import auth from '../firebase.init';
 const SignUp = (props) => {
-    const [email,setEmail]=useState('');
-    const [password,setPassword]=useState('');
-    const [confirmPassword, setConfirmPassword]=useState('');
-    const [error, setError]=useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const [createUserWithEmailAndPassword]=useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate();
 
-    const handleEmailBlur=event=>{
+    const handleEmailBlur = event => {
         setEmail(event.target.value);
     }
-    
-    const handlePasswordBlur = event=>{
+
+    const handlePasswordBlur = event => {
         setPassword(event.target.value);
     }
 
-    const handleConfirmPasswordBlur = event =>{
+    const handleConfirmPasswordBlur = event => {
         setConfirmPassword(event.target.value);
     }
 
-    const handleCreateUser = event=>{
+    if (user) {
+        navigate('/');
+    }
+
+    const handleCreateUser = event => {
         event.preventDefault();
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             setError('Password did not matched!!');
             return;
         }
-        if(password.length<6){
+        if (password.length < 6) {
             setError('Password should be more than 5 character !!');
             return;
         }
-        createUserWithEmailAndPassword(email,password);
+        createUserWithEmailAndPassword(email, password);
     }
     return (
         <div className='from-container'>
@@ -43,7 +48,7 @@ const SignUp = (props) => {
                     <h2 className='from-title'>SignUp</h2>
                     <div className="input-group">
                         <label htmlFor='email'>Email</label>
-                        <input onBlur={handleEmailBlur} type="email" name="" id="" required/>
+                        <input onBlur={handleEmailBlur} type="email" name="" id="" required />
                     </div>
                     <div className="input-group">
                         <label htmlFor='password'>Password</label>
@@ -56,8 +61,8 @@ const SignUp = (props) => {
                     <input className='from-submit' type='submit' value='SignUp'></input>
 
                 </form>
-                <p style={{color:'red', textAlign:'center'}}>{error}</p>
-                <p style={{textAlign:'center'}}>Already have an account? <Link className='form-link' to='/login'>Login</Link></p>
+                <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>
+                <p style={{ textAlign: 'center' }}>Already have an account? <Link className='form-link' to='/login'>Login</Link></p>
             </div>
 
 
